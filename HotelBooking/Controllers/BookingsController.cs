@@ -35,7 +35,7 @@ namespace HotelBooking.Controllers
             return View(bvm);
         }
 
-        // GET: Bookings/Details/5
+        // GET: Bookings/Details/5 THIS IS AWESOME
         public ActionResult Details(int? id)
         {
             if (id == null)
