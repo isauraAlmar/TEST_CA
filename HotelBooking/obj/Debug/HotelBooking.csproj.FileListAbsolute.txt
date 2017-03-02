@@ -174,7 +174,6 @@ C:\Test2016\Solutions\HotellBooking startup project\HotelBooking\bin\Newtonsoft.
 C:\Test2016\Solutions\HotellBooking startup project\HotelBooking\obj\Debug\HotelBooking.csprojResolveAssemblyReference.cache
 C:\Test2016\Solutions\HotellBooking startup project\HotelBooking\obj\Debug\HotelBooking.dll
 C:\Test2016\Solutions\HotellBooking startup project\HotelBooking\obj\Debug\HotelBooking.pdb
-C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\obj\Debug\HotelBooking.csprojResolveAssemblyReference.cache
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\obj\Debug\HotelBooking.dll
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\obj\Debug\HotelBooking.pdb
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\roslyn\csc.exe

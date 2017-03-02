@@ -1,6 +1,7 @@
 ﻿using HotelBooking.BLL;
 using HotelBooking.DAL;
 using HotelBooking.Models;
+using NSubstitute;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -60,12 +61,12 @@ namespace HotelBooking.UnitTests
         {
             BookingManager manager = CreateBookingManager();
             DateTime today = DateTime.Today;
-            var ex = Assert.Throws<ArgumentException>(() 
+            var ex = Assert.Throws<ArgumentException>(()
                 => manager.GetFullyOccupiedDates(today.AddDays(1), today));
-            Assert.That(ex.Message, 
+            Assert.That(ex.Message,
                 Is.EqualTo("Error"));
         }
-
+        /*
         private BookingManager CreateBookingManager()
         {
             DateTime start = DateTime.Today.AddDays(10);
@@ -73,6 +74,45 @@ namespace HotelBooking.UnitTests
             RepositoriesFactory.BookingRepository = new FakeBookingRepository(start, end);
             RepositoriesFactory.RoomRepository = new FakeRoomRepository();
             return new BookingManager();
+        }*/
+
+        private BookingManager CreateBookingManager()
+        {
+            DateTime start = DateTime.Today.AddDays(10);
+            DateTime end = DateTime.Today.AddDays(20);
+
+            List<Booking> bookings = new List<Booking>
+            {
+                new Booking { Id=1, StartDate=start, EndDate=end, IsActive=true, CustomerId=1, RoomId=1 },
+                new Booking { Id=2, StartDate=start, EndDate=end, IsActive=true, CustomerId=2, RoomId=2 },
+            };
+            List<Room> rooms = new List<Room>
+            {
+                new Room { Id = 1 },
+                new Room { Id = 2 }
+            };
+
+            // Create a fake BookingRepository using NSubstitute
+            IRepository<Booking> bookingRepository = Substitute.For<IRepository<Booking>>();
+            // Set a return value for GetAll() 
+            bookingRepository.GetAll().Returns(bookings);
+            // Set a return value for Get() - not used
+            bookingRepository.Get(2).Returns(bookings[1]);
+            // Set a return value for Add() - not used
+            bookingRepository.Add(Arg.Any<Booking>()).Returns(bookings[1]);
+
+            // Create a fake RoomRepository using NSubstitute
+            IRepository<Room> roomRepository = Substitute.For<IRepository<Room>>();
+            // Set a return value for GetAll() 
+            roomRepository.GetAll().Returns(rooms);
+
+
+            RepositoriesFactory.BookingRepository = bookingRepository;
+            RepositoriesFactory.RoomRepository = roomRepository;
+            return new BookingManager();
         }
     }
+
+
 }
+

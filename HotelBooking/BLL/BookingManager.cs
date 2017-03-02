@@ -3,10 +3,7 @@ using HotelBooking.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-<<<<<<< HEAD
 using System.Web;
-=======
->>>>>>> 00c772ac6f7d067b176128ec60c0a289ca0888cc
 
 namespace HotelBooking.BLL
 {
@@ -24,10 +21,7 @@ namespace HotelBooking.BLL
         }*/
 
         //---------------------Create----------------------------
-<<<<<<< HEAD
         //test
-=======
->>>>>>> 00c772ac6f7d067b176128ec60c0a289ca0888cc
         public Booking CreateBooking(Booking booking)
         {
             int roomId = FindAvailableRoom(booking.StartDate, booking.EndDate);

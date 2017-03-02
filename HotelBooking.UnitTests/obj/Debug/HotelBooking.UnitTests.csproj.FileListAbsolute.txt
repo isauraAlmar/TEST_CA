@@ -37,3 +37,5 @@ C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\H
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\nunit.framework.xml
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\NSubstitute.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\NSubstitute.xml
