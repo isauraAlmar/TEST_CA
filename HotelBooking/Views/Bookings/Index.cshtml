@@ -1,0 +1,48 @@
+﻿@model HotelBooking.ViewModels.BookingViewModel
+
+@{
+    ViewBag.Title = "Index";
+    int year = Model.YeatToDisplay;
+    List<DateTime> fullyOccupiedDates = Model.FullyOccupiedDates;
+}
+
+<h2>Bookings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Previous year", "Index", new { id = year - 1 }) |
+    @Html.ActionLink("Next year", "Index", new { id = year + 1 })
+</p>
+
+<table class="table">
+    <tr>
+        <th>@year</th>
+        @for (int day = 1; day <= 31; day++)
+        {
+            <th>@day</th>
+        }
+    </tr>
+
+    @for (int month = 1; month <= 12; month++)
+    {
+        <tr>
+            <td>
+                @Model.GetMonth(month)
+            </td>
+
+            @for (int day = 1; day <= 31; day++)
+            {
+                DateTime occupiedDate = DateTime.MinValue;
+                if (day <= DateTime.DaysInMonth(year, month))
+                {
+                    DateTime dt = new DateTime(year, month, day);
+                    occupiedDate = fullyOccupiedDates.FirstOrDefault(d => d == dt);
+                }
+                <th @if (occupiedDate > DateTime.MinValue) { <text> class="dateOccupied" </text>  }>
+                </th>
+            }
+        </tr>
+    }
+</table>
