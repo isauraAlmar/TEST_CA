@@ -39,3 +39,8 @@ C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\H
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\NSubstitute.dll
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\NSubstitute.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\WebActivatorEx.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ninject.Web.Common.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ninject.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ninject.Web.Common.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ninject.xml

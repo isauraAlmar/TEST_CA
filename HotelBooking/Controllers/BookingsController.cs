@@ -20,27 +20,28 @@ namespace HotelBooking.Controllers
         private IRepository<Customer> customerRep;
         private IRepository<Booking> bookingRep;
         private IBookingManager bookingMan;
+        private IBookingViewModel bookingvm;
         
         public BookingsController(IRepository<Booking> br, IRepository<Customer> cr,
-            IRepository<Room> rr, IBookingManager bm)
+            IRepository<Room> rr, IBookingManager bm, IBookingViewModel bvm)
         {
             bookingRep = br;
             customerRep = cr;
             roomRep = rr;
             bookingMan = bm;
+            bookingvm = bvm;
         }
 
         // GET: Bookings
         public ActionResult Index(int? id)
         {
-            BookingViewModel bvm = new BookingViewModel
-            {
-                bookings = bookingRep.GetAll().ToList(),
-                FullyOccupiedDates = bookingMan.GetFullyOccupiedDates(bookingMan.MinBookingDate(), bookingMan.MaxBookingDate()),
-                YeatToDisplay = bookingMan.YearToDisplay(id)
-            };
 
-            return View(bvm);
+            bookingvm.bookings = bookingRep.GetAll().ToList();
+            bookingvm.FullyOccupiedDates = bookingMan.GetFullyOccupiedDates(bookingMan.MinBookingDate(), bookingMan.MaxBookingDate());
+            bookingvm.YeatToDisplay = bookingMan.YearToDisplay(id);
+            
+
+            return View(bookingvm);
         }
 
         // GET: Bookings/Details/5 THIS IS AWESOME

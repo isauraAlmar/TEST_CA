@@ -13,6 +13,7 @@ namespace HotelBooking.App_Start
     using Models;
     using DAL;
     using BLL;
+    using ViewModels;
 
     public static class NinjectWebCommon 
     {
@@ -68,6 +69,7 @@ namespace HotelBooking.App_Start
             kernel.Bind<IRepository<Customer>>().To<CustomerRepository>();
             kernel.Bind<IRepository<Room>>().To<RoomRepository>();
             kernel.Bind<IBookingManager>().To<BookingManager>();
+            kernel.Bind<IBookingViewModel>().To<BookingViewModel>();
         }        
     }
 }

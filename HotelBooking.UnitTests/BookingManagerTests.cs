@@ -13,6 +13,8 @@ namespace HotelBooking.UnitTests
 {
     public class BookingManagerTests
     {
+        //------------Createbooking------------
+        
 
         //------------FindAvailableRoom------------
         [Test]
@@ -69,7 +71,56 @@ namespace HotelBooking.UnitTests
         }
         //------------------YearToDisplay---------------------
 
+        [Test]
+        public void YearToDisplay_ThisYear_Returns2017()
+        {
+            BookingManager manager = CreateBookingManager();
+            var result = manager.YearToDisplay(2017);
+            Assert.AreEqual(2017, result);
+        }
+
+        [Test]
+        public void YearToDisplay_LastYear_Returns2016()
+        {
+            BookingManager manager = CreateBookingManager();
+            var result = manager.YearToDisplay(2016);
+            Assert.AreEqual(2016, result);
+        }
+
+        [Test]
+        public void YearToDisplay_YearIsPastMinYear_Returns2016()
+        {
+            BookingManager manager = CreateBookingManager();
+            var result = manager.YearToDisplay(2015);
+            Assert.AreEqual(2016, result);
+        }
+
+        [Test]
+        public void YearToDisplay_YearIsOverMaxYear_Returns2017()
+        {
+            BookingManager manager = CreateBookingManager();
+            var result = manager.YearToDisplay(2018);
+            Assert.AreEqual(2017, result);
+        }
+
         //------------------MinBookingDate() And MaxBookingDate()--------------
+        [Test]
+        public void MinBookingDate_LastYearBookingAdded_ReturnLastYearDate()
+        {
+            BookingManager manager = CreateBookingManager();
+            DateTime LastYearStart = new DateTime(2016, 02, 02);
+            var result = manager.MinBookingDate();
+            Assert.AreEqual(LastYearStart, result);
+        }
+
+        [Test]
+        public void MinBookingDate_CurrentDateAddedplus20Days_ReturnCurrentDatePlus20Days()
+        {
+            BookingManager manager = CreateBookingManager();
+            DateTime lastBookingDate = DateTime.Today.AddDays(20);
+            var result = manager.MaxBookingDate();
+            Assert.AreEqual(lastBookingDate, result);
+        }
 
         /*
         private BookingManager CreateBookingManager()
@@ -85,10 +136,13 @@ namespace HotelBooking.UnitTests
         {
             DateTime start = DateTime.Today.AddDays(10);
             DateTime end = DateTime.Today.AddDays(20);
+            DateTime LastYearStart = new DateTime(2016,02, 02);
+            DateTime LastYearEnd = new DateTime(2016, 02, 22);
             List<Booking> bookings = new List<Booking>
             {
                 new Booking { Id=1, StartDate=start, EndDate=end, IsActive=true, CustomerId=1, RoomId=1 },
                 new Booking { Id=2, StartDate=start, EndDate=end, IsActive=true, CustomerId=2, RoomId=2 },
+                new Booking {Id=3, StartDate = LastYearStart, EndDate = LastYearEnd, IsActive=true, CustomerId = 3, RoomId = 3 },
             };
             List<Room> rooms = new List<Room>
             {

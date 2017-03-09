@@ -21,7 +21,6 @@ namespace HotelBooking.BLL
         }
 
         //---------------------Create----------------------------
-        //test
         public Booking CreateBooking(Booking booking)
         {
             int roomId = FindAvailableRoom(booking.StartDate, booking.EndDate);
@@ -87,11 +86,11 @@ namespace HotelBooking.BLL
         {
                 int minBookingYear = MinBookingDate().Year;
                 int maxBookingYear = MaxBookingDate().Year;
-                if (id < minBookingYear)
+                if (id <= minBookingYear)
                 {
                     return minBookingYear;
                 }                    
-                else if (id > maxBookingYear)
+                else if (id >= maxBookingYear)
                 {
                     return maxBookingYear;
                 }                    

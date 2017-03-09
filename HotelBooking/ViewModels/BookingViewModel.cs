@@ -8,7 +8,7 @@ using System.Web;
 
 namespace HotelBooking.ViewModels
 {
-    public class BookingViewModel
+    public class BookingViewModel : IBookingViewModel
     {      
         public List<Booking> bookings { get; set; }
         public List<DateTime> FullyOccupiedDates { get; set; }
