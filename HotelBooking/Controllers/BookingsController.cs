@@ -15,21 +15,29 @@ namespace HotelBooking.Controllers
 {
     public class BookingsController : Controller
     {
-        private HotelBookingContext db = new HotelBookingContext();
-        private static IRepository<Room> rr = new RoomRepository();
-        private static IRepository<Customer> cr = new CustomerRepository();
-        private static IRepository<Booking> br = new BookingRepository();
-        private IBookingManager bm = new BookingManager();
-
+        //private HotelBookingContext db = new HotelBookingContext();
+        private IRepository<Room> roomRep;
+        private IRepository<Customer> customerRep;
+        private IRepository<Booking> bookingRep;
+        private IBookingManager bookingMan;
+        
+        public BookingsController(IRepository<Booking> br, IRepository<Customer> cr,
+            IRepository<Room> rr, IBookingManager bm)
+        {
+            bookingRep = br;
+            customerRep = cr;
+            roomRep = rr;
+            bookingMan = bm;
+        }
 
         // GET: Bookings
         public ActionResult Index(int? id)
         {
             BookingViewModel bvm = new BookingViewModel
             {
-                bookings = br.GetAll().ToList(),
-                FullyOccupiedDates = bm.GetFullyOccupiedDates(bm.MinBookingDate(), bm.MaxBookingDate()),
-                YeatToDisplay = bm.YearToDisplay(id)
+                bookings = bookingRep.GetAll().ToList(),
+                FullyOccupiedDates = bookingMan.GetFullyOccupiedDates(bookingMan.MinBookingDate(), bookingMan.MaxBookingDate()),
+                YeatToDisplay = bookingMan.YearToDisplay(id)
             };
 
             return View(bvm);
@@ -42,7 +50,7 @@ namespace HotelBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
+            Booking booking = bookingRep.Get(id.Value);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -53,7 +61,7 @@ namespace HotelBooking.Controllers
         // GET: Bookings/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
+            ViewBag.CustomerId = new SelectList(customerRep.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -66,15 +74,12 @@ namespace HotelBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                Booking newBooking = bm.CreateBooking(booking);
+                Booking newBooking = bookingMan.CreateBooking(booking);
                 if (newBooking != null)
-                {
                     return RedirectToAction("Index");
-                }
-                    
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
+            ViewBag.CustomerId = new SelectList(customerRep.GetAll(), "Id", "Name", booking.CustomerId);
             return View(booking);
         }
 
@@ -85,13 +90,13 @@ namespace HotelBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
+            Booking booking = bookingRep.Get(id.Value);
             if (booking == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Description", booking.RoomId);
+            ViewBag.CustomerId = new SelectList(customerRep.GetAll(), "Id", "Name", booking.CustomerId);
+            ViewBag.RoomId = new SelectList(roomRep.GetAll(), "Id", "Description", booking.RoomId);
             return View(booking);
         }
 
@@ -104,12 +109,11 @@ namespace HotelBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(booking).State = EntityState.Modified;
-                db.SaveChanges();
+                bookingRep.Update(booking);
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Description", booking.RoomId);
+            ViewBag.CustomerId = new SelectList(customerRep.GetAll(), "Id", "Name", booking.CustomerId);
+            ViewBag.RoomId = new SelectList(roomRep.GetAll(), "Id", "Description", booking.RoomId);
             return View(booking);
         }
 
@@ -120,7 +124,7 @@ namespace HotelBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
+            Booking booking = bookingRep.Get(id.Value);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -133,12 +137,10 @@ namespace HotelBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Booking booking = db.Bookings.Find(id);
-            db.Bookings.Remove(booking);
-            db.SaveChanges();
+            bookingRep.Delete(id);
             return RedirectToAction("Index");
         }
-
+        /*
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -146,6 +148,6 @@ namespace HotelBooking.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }*/
     }
 }

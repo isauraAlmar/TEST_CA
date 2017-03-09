@@ -14,6 +14,7 @@ namespace HotelBooking.UnitTests
     public class BookingManagerTests
     {
 
+        //------------FindAvailableRoom------------
         [Test]
         public void FindAvailableRoom_RoomAvailable_RoomIdNotMinusOne()
         {
@@ -32,7 +33,7 @@ namespace HotelBooking.UnitTests
             DateTime today = DateTime.Today;
             var ex = Assert.Throws<ArgumentException>(()
                 => manager.FindAvailableRoom(today.AddDays(-1), today));
-            StringAssert.Contains("Error", ex.Message);
+            StringAssert.Contains("Start and end date cannot be set to before current date, and end date should not be later than start date", ex.Message);
         }
 
         [Test]
@@ -42,9 +43,9 @@ namespace HotelBooking.UnitTests
             DateTime today = DateTime.Today;
             var ex = Assert.Throws<ArgumentException>(()
                 => manager.FindAvailableRoom(today, today.AddDays(-1)));
-            StringAssert.Contains("Error", ex.Message);
+            StringAssert.Contains("Start and end date cannot be set to before current date, and end date should not be later than start date", ex.Message);
         }
-
+        //------------GetFullyOccupiedDates------------
         [Test]
         public void GetFullyOccupiedDates_NoOccupiedDates_ReturnsEmptyListOfDates()
         {
@@ -64,8 +65,12 @@ namespace HotelBooking.UnitTests
             var ex = Assert.Throws<ArgumentException>(()
                 => manager.GetFullyOccupiedDates(today.AddDays(1), today));
             Assert.That(ex.Message,
-                Is.EqualTo("Error"));
+                Is.EqualTo("The start date cannot be later than the end date."));
         }
+        //------------------YearToDisplay---------------------
+
+        //------------------MinBookingDate() And MaxBookingDate()--------------
+
         /*
         private BookingManager CreateBookingManager()
         {
@@ -80,7 +85,6 @@ namespace HotelBooking.UnitTests
         {
             DateTime start = DateTime.Today.AddDays(10);
             DateTime end = DateTime.Today.AddDays(20);
-
             List<Booking> bookings = new List<Booking>
             {
                 new Booking { Id=1, StartDate=start, EndDate=end, IsActive=true, CustomerId=1, RoomId=1 },
@@ -92,24 +96,15 @@ namespace HotelBooking.UnitTests
                 new Room { Id = 2 }
             };
 
-            // Create a fake BookingRepository using NSubstitute
-            IRepository<Booking> bookingRepository = Substitute.For<IRepository<Booking>>();
-            // Set a return value for GetAll() 
+            // Fake BookingRepository using NSubstitute
+            IRepository<Booking> bookingRepository = Substitute.For<IRepository<Booking>>(); 
             bookingRepository.GetAll().Returns(bookings);
-            // Set a return value for Get() - not used
-            bookingRepository.Get(2).Returns(bookings[1]);
-            // Set a return value for Add() - not used
-            bookingRepository.Add(Arg.Any<Booking>()).Returns(bookings[1]);
 
-            // Create a fake RoomRepository using NSubstitute
+            // Fake RoomRepository using NSubstitute
             IRepository<Room> roomRepository = Substitute.For<IRepository<Room>>();
-            // Set a return value for GetAll() 
             roomRepository.GetAll().Returns(rooms);
 
-
-            RepositoriesFactory.BookingRepository = bookingRepository;
-            RepositoriesFactory.RoomRepository = roomRepository;
-            return new BookingManager();
+            return new BookingManager(bookingRepository, roomRepository);
         }
     }
 

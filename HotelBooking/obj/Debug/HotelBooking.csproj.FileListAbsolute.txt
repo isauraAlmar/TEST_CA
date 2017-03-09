@@ -217,3 +217,11 @@ C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\H
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\System.Web.WebPages.Razor.xml
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Antlr3.Runtime.pdb
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Newtonsoft.Json.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\obj\Debug\HotelBooking.csprojResolveAssemblyReference.cache
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.Web.Common.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.Web.Mvc.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\WebActivatorEx.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.Web.Common.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.Web.Mvc.xml
