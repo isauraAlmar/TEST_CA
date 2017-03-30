@@ -44,3 +44,10 @@ C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\H
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ninject.dll
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ninject.Web.Common.xml
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ninject.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\HotelBooking.dll.config
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Ionic.Zip.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\WebDriver.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\WebDriver.Support.dll
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\WebDriver.xml
+C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking.UnitTests\bin\Debug\WebDriver.Support.xml

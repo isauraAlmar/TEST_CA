@@ -14,6 +14,7 @@ namespace HotelBooking.App_Start
     using DAL;
     using BLL;
     using ViewModels;
+    using System.Data.Entity;
 
     public static class NinjectWebCommon 
     {

@@ -12,8 +12,7 @@ namespace HotelBooking.BLL
         private IRepository<Booking> br;
         private IRepository<Room> rr;
 
-
-        // Constructor injection
+        
         public BookingManager(IRepository<Booking> bookingRepository, IRepository<Room> roomRepository)
         {
             br = bookingRepository;
@@ -42,13 +41,15 @@ namespace HotelBooking.BLL
         {
             if (startDate <= DateTime.Today || startDate > endDate || endDate <= DateTime.Today)
                 throw new ArgumentException("Start and end date cannot be set to before current date, and end date should not be later than start date");
-
+            var romms = rr.GetAll();
+            var books = br.GetAll();
             foreach (var room in rr.GetAll())
             {
                 if (!br.GetAll().Any(
                         b => b.RoomId == room.Id && b.IsActive &&
                         (startDate >= b.StartDate && startDate <= b.EndDate ||
-                        endDate >= b.StartDate && endDate <= b.EndDate)
+                        endDate >= b.StartDate && endDate <= b.EndDate || 
+                        startDate <= b.StartDate && endDate >= b.EndDate)
                     ))
                 {
                     return room.Id;
