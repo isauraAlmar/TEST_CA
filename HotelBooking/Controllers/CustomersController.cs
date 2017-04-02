@@ -14,11 +14,13 @@ namespace HotelBooking.Controllers
     public class CustomersController : Controller
     {
         private HotelBookingContext db = new HotelBookingContext();
+        public CustomerRepository cr = new CustomerRepository();
 
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            return View(cr.GetAll().ToList());
+           // return View(db.Customers.ToList());
         }
 
         // GET: Customers/Details/5
@@ -51,8 +53,9 @@ namespace HotelBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
-                db.SaveChanges();
+                Customer cus = cr.Add(customer);
+                //db.Customers.Add(customer);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
