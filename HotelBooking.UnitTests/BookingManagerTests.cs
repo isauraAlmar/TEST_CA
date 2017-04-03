@@ -36,7 +36,7 @@ namespace HotelBooking.UnitTests
 
 
         [Test]
-        public void CreateBooking_StartDateIsLargerThanEndDate_BookingIsCreated()
+        public void CreateBooking_StartDateIsLargerThanEndDate_NotCreated()
         {
             DateTime date = DateTime.Today.AddDays(1);
             DateTime date2 = DateTime.Today.AddDays(2);
@@ -54,7 +54,63 @@ namespace HotelBooking.UnitTests
                => manager.CreateBooking(newBooking));
             StringAssert.Contains("Start and end date cannot be set to before current date, and end date should not be later than start date", createdBooking.Message);
         }
-        
+
+        [Test]
+        public void CreateBooking_StartEqualsEndDateMinInOccupied_NotCreated()
+        {
+            DateTime date = DateTime.Today.AddDays(10);
+            DateTime date2 = DateTime.Today.AddDays(10);
+            Booking newBooking = new Booking
+            {
+                Id = 4,
+                StartDate = date2,
+                EndDate = date,
+                CustomerId = 1,
+                RoomId = 1,
+                IsActive = true
+            };
+            BookingManager manager = CreateBookingManager(newBooking);
+            var createdBooking = manager.CreateBooking(newBooking);
+            Assert.AreEqual(null, createdBooking);
+        }
+
+        [Test]
+        public void CreateBooking_DatesEqualsOccupiedDates_NotCreated()
+        {
+            DateTime date = DateTime.Today.AddDays(20);
+            DateTime date2 = DateTime.Today.AddDays(20);
+            Booking newBooking = new Booking
+            {
+                Id = 4,
+                StartDate = date2,
+                EndDate = date,
+                CustomerId = 1,
+                RoomId = 1,
+                IsActive = true
+            };
+            BookingManager manager = CreateBookingManager(newBooking);
+            var createdBooking = manager.CreateBooking(newBooking);
+            Assert.AreEqual(null, createdBooking);
+        }
+
+        [Test]
+        public void CreateBooking_StartEqualsEndDateMaxInOccupied_NotCreated()
+        {
+            DateTime date = DateTime.Today.AddDays(20);
+            DateTime date2 = DateTime.Today.AddDays(20);
+            Booking newBooking = new Booking
+            {
+                Id = 4,
+                StartDate = date2,
+                EndDate = date,
+                CustomerId = 1,
+                RoomId = 1,
+                IsActive = true
+            };
+            BookingManager manager = CreateBookingManager(newBooking);
+            var createdBooking = manager.CreateBooking(newBooking);
+            Assert.AreEqual(null, createdBooking);
+        }
 
         private BookingManager CreateBookingManager(Booking booking)
         {

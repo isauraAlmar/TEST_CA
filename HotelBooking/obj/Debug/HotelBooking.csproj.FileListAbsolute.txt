@@ -224,4 +224,3 @@ C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\H
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.xml
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.Web.Common.xml
 C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\bin\Ninject.Web.Mvc.xml
-C:\Users\JonathansPC\Documents\Visual Studio 2015\Projects\Testing_MiniProject\HotelBooking\obj\Debug\HotelBooking.csprojResolveAssemblyReference.cache
