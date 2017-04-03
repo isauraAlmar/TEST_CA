@@ -75,7 +75,9 @@
     <Compile Include="BookingManagerTests.cs" />
     <Compile Include="BookingViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleniumTests\CreateBookingInvalidInput.cs" />
     <Compile Include="SeleniumTests\CreateBookingInvalidOccupied.cs" />
+    <Compile Include="SeleniumTests\CreateBookingSeleniumTests.cs" />
     <Compile Include="SeleniumTests\CreateBookingValidInput.cs" />
   </ItemGroup>
   <ItemGroup>

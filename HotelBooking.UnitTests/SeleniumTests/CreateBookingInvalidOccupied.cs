@@ -60,6 +60,10 @@ namespace SeleniumTests
             String currentURL = driver.Url;
             Assert.AreEqual(baseURL + "Bookings/Create", currentURL);
         }
+
+
+
+
         private bool IsElementPresent(By by)
         {
             try

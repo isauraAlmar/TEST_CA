@@ -12,7 +12,7 @@ using OpenQA.Selenium.Support.UI;
 namespace HotelBooking.UnitTests.SeleniumTests
 {
     [TestFixture]
-    public class CreateBookingInvalidOccupied
+    public class CreateBookingInvalidInput
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -43,10 +43,9 @@ namespace HotelBooking.UnitTests.SeleniumTests
         }
 
         [Test]
-        [TestCase("07-04-2017", "08-04-2017")]
-        [TestCase("06-04-2017", "06-04-2017")]
-        [TestCase("06-04-2017", "09-04-2017")]
-        public void TheCreateBookingValidInputTest(string startDate, string endDate)
+        [TestCase("02-04-2017", "04-04-2017")]
+        [TestCase("03-04-2017", "05-04-2017")]
+        public void TheCreateBookingInvalidInputTest(string startDate, string endDate)
         {
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
 
