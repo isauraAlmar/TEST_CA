@@ -41,7 +41,7 @@ namespace HotelBooking.UnitTests.SeleniumTests
             }
             Assert.AreEqual("", verificationErrors.ToString());
         }
-
+        /*
         [Test]
         [TestCase("07-04-2017", "08-04-2017")]
         [TestCase("06-04-2017", "06-04-2017")]
@@ -58,7 +58,7 @@ namespace HotelBooking.UnitTests.SeleniumTests
             driver.FindElement(By.CssSelector("input.btn.btn-default")).Click();
             String currentURL = driver.Url;
             Assert.AreEqual("http://localhost:1247/", currentURL);
-        }
+        }*/
         private bool IsElementPresent(By by)
         {
             try

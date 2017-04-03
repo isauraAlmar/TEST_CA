@@ -40,7 +40,7 @@ namespace SeleniumTests
             }
             Assert.AreEqual("", verificationErrors.ToString());
         }
-        
+        /*
         [Test]
         [TestCase("10-04-2017", "20-04-2017")]
         [TestCase("9-04-2017", "10-04-2017")]
@@ -60,7 +60,7 @@ namespace SeleniumTests
             String currentURL = driver.Url;
             Assert.AreEqual(baseURL + "Bookings/Create", currentURL);
         }
-
+        */
 
 
 
