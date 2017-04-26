@@ -37,50 +37,50 @@ namespace HotelBooking.BLL
             }
         }
 
+        //||
+        //startDate <= b.StartDate && endDate >= b.EndDate
+
         public int FindAvailableRoom(DateTime startDate, DateTime endDate)
         {
-            if (startDate <= DateTime.Today || startDate > endDate || endDate <= DateTime.Today)
-                throw new ArgumentException("Start and end date cannot be set to before current date, and end date should not be later than start date");
-            var romms = rr.GetAll();
-            var books = br.GetAll();
-            foreach (var room in rr.GetAll())
-            {
-                if (!br.GetAll().Any(
+           /*3*/ if (startDate <= DateTime.Today || startDate > endDate || endDate <= DateTime.Today)
+           /*4*/    throw new ArgumentException("Start and end date cannot be set to before current date, and the start date later than the end date");
+
+           /*5*/ foreach (var room in rr.GetAll()) {
+           /*6*/    if (!br.GetAll().Any(
                         b => b.RoomId == room.Id && b.IsActive &&
                         (startDate >= b.StartDate && startDate <= b.EndDate ||
-                        endDate >= b.StartDate && endDate <= b.EndDate || 
+                        endDate >= b.StartDate && endDate <= b.EndDate ||
                         startDate <= b.StartDate && endDate >= b.EndDate)
-                    ))
-                {
-                    return room.Id;
-                }
-            }
-            return -1;
+
+           /*11*/         )) {
+           /*12*/            return room.Id;
+           /*13*/         }
+           /*14*/    }
+           /*15*/ return -1;
         }
 
         //-------------------Index------------------------------
-
         public List<DateTime> GetFullyOccupiedDates(DateTime startDate, DateTime endDate)
         {
-            if (startDate > endDate)
-                throw new ArgumentException("The start date cannot be later than the end date.");
+            /*3*/if (startDate > endDate)
+            /*4*/    throw new ArgumentException("The start date cannot be later than the end date.");
 
-            List<DateTime> fullyOccupiedDates = new List<DateTime>();
-            int noOfRooms = rr.GetAll().Count();
-            var bookings = br.GetAll();
+            /*5*/List<DateTime> fullyOccupiedDates = new List<DateTime>();
+            /*6*/int noOfRooms = rr.GetAll().Count();
+            /*7*/var bookings = br.GetAll();
 
-            if (bookings.Any())
-            {
-                for (DateTime d = startDate; d <= endDate; d = d.AddDays(1))
-                {
-                    var noOfBookings = from b in bookings
-                                       where b.IsActive && d >= b.StartDate && d <= b.EndDate
-                                       select b;
-                    if (noOfBookings.Count() >= noOfRooms)
-                        fullyOccupiedDates.Add(d);
-                }
-            }
-            return fullyOccupiedDates;
+            /*8*/if (bookings.Any())
+            /*9*/{
+            /*10*/    for (DateTime d = startDate; d <= endDate; d = d.AddDays(1))
+            /*11*/    {
+            /*12*/        var noOfBookings = from b in bookings
+            /*13*/                           where b.IsActive && d >= b.StartDate && d <= b.EndDate
+            /*14*/                           select b;
+            /*15*/        if (noOfBookings.Count() >= noOfRooms)
+            /*16*/           fullyOccupiedDates.Add(d);
+            /*17*/   }
+            /*18*/}
+            /*19*/return fullyOccupiedDates;
         }
 
         public int YearToDisplay(int? id)

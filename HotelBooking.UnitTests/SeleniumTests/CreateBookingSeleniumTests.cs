@@ -44,8 +44,8 @@ namespace HotelBooking.UnitTests.SeleniumTests
 
         [Test]
         [TestCase("07-04-2017", "08-04-2017")]
-        [TestCase("06-04-2017", "06-04-2017")]
-        [TestCase("06-04-2017", "09-04-2017")]
+        [TestCase("07-04-2017", "07-04-2017")]
+        [TestCase("07-04-2017", "09-04-2017")]
         public void CreateBooking_ValidInput_ReturnHomePage(string startDate, string endDate)
         {
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
