@@ -51,7 +51,6 @@ namespace HotelBooking.BLL
                         (startDate >= b.StartDate && startDate <= b.EndDate ||
                         endDate >= b.StartDate && endDate <= b.EndDate ||
                         startDate <= b.StartDate && endDate >= b.EndDate)
-
            /*11*/         )) {
            /*12*/            return room.Id;
            /*13*/         }
