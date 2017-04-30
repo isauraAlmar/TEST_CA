@@ -14,6 +14,7 @@ namespace HotelBooking.UnitTests
     public class BookingManagerTests
     {
         //------------Createbooking------------
+<<<<<<< HEAD
         
         //------------------------------------------------------------------------------------
         [Test]
@@ -28,12 +29,28 @@ namespace HotelBooking.UnitTests
                 Id = 4,
                 StartDate = date2,
                 EndDate = date,
+=======
+
+        [Test]
+        [TestCase(1, 9)]
+        [TestCase(21, 22)]
+        public void CreateBooking_ValidInputInOccupied_BookingCreated(int stNo, int edNo)
+        {
+            DateTime startdate = DateTime.Today.AddDays(stNo);
+            DateTime enddate = DateTime.Today.AddDays(edNo);
+            Booking newBooking = new Booking
+            {
+                Id = 4,
+                StartDate = startdate,
+                EndDate = enddate,
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
                 CustomerId = 1,
                 RoomId = 1,
                 IsActive = true
             };
             BookingManager manager = CreateBookingManager(newBooking);
             var createdBooking = manager.CreateBooking(newBooking);
+<<<<<<< HEAD
             Assert.AreEqual(null, createdBooking);
         }
 
@@ -42,11 +59,29 @@ namespace HotelBooking.UnitTests
         {
             DateTime date = DateTime.Today.AddDays(20);
             DateTime date2 = DateTime.Today.AddDays(20);
+=======
+            Assert.AreEqual(createdBooking, createdBooking);
+        }
+
+        [Test]
+        [TestCase(9, 21)]
+        [TestCase(9, 10)]
+        [TestCase(9, 20)]
+        [TestCase(10, 21)]
+        [TestCase(10, 10)]
+        [TestCase(10, 20)]
+        [TestCase(20, 20)]
+        [TestCase(20, 21)]
+        public void CreateBooking_InValidInputInOccupied_NotCreated(int stNo, int edNo)
+        {
+            DateTime startdate = DateTime.Today.AddDays(stNo);
+            DateTime enddate = DateTime.Today.AddDays(edNo);
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
             Booking newBooking = new Booking
             {
                 Id = 4,
-                StartDate = date2,
-                EndDate = date,
+                StartDate = startdate,
+                EndDate = enddate,
                 CustomerId = 1,
                 RoomId = 1,
                 IsActive = true
@@ -60,13 +95,22 @@ namespace HotelBooking.UnitTests
         [TestCase(0, 1)]
         [TestCase(2, 1)]
         [TestCase(-1, 1)]
+<<<<<<< HEAD
         public void CreateBooking_InvalidInput_ThrowsArgumentException(int stNr, int edNr)
+=======
+        public void CreateBooking_InvalidInput_ThrowsArgumentException(int stNo, int edNo)
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
         {
             Booking newBooking = new Booking
             {
                 Id = 4,
+<<<<<<< HEAD
                 StartDate = DateTime.Today.AddDays(stNr),
                 EndDate = DateTime.Today.AddDays(edNr),
+=======
+                StartDate = DateTime.Today.AddDays(stNo),
+                EndDate = DateTime.Today.AddDays(edNo),
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
                 CustomerId = 1,
                 RoomId = 1,
                 IsActive = true
@@ -74,16 +118,27 @@ namespace HotelBooking.UnitTests
             BookingManager manager = CreateBookingManager(newBooking);
             var createdBooking = Assert.Throws<ArgumentException>(()
                => manager.CreateBooking(newBooking));
+<<<<<<< HEAD
             StringAssert.Contains("Start and end date cannot be set to before current date, and end date should not be later than start date", createdBooking.Message);
+=======
+            StringAssert.Contains("Start and end date cannot be set to before current date, and the start date later than the end date", createdBooking.Message);
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
         }
 
         [Test]
         [TestCase(1, 1)]
         [TestCase(1, 2)]
+<<<<<<< HEAD
         public void CreateBooking_ValidInput_BookingIsCreated(int stNr, int edNr)
         {
             DateTime date = DateTime.Today.AddDays(stNr);
             DateTime date2 = DateTime.Today.AddDays(edNr);
+=======
+        public void CreateBooking_ValidInput_BookingIsCreated(int stNo, int edNo)
+        {
+            DateTime date = DateTime.Today.AddDays(stNo);
+            DateTime date2 = DateTime.Today.AddDays(edNo);
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
             Booking newBooking = new Booking
             {
                 Id = 4,
@@ -124,11 +179,8 @@ namespace HotelBooking.UnitTests
             bookingRepository.Add(booking).Returns(booking);
             bookingRepository.GetAll().Returns(bookings);
 
-
             return new BookingManager(bookingRepository, roomRepository);
         }
-
-
 
         //------------FindAvailableRoom------------
         [Test]
@@ -140,26 +192,19 @@ namespace HotelBooking.UnitTests
             int roomId = manager.FindAvailableRoom(date, date);
 
             Assert.AreNotEqual(-1, roomId);
-        }
+        }        
 
         [Test]
-        public void FindAvailableRoom_StartDateBeforeToday_ThrowsExceptionError()
+        [TestCase(1,-1)]
+        [TestCase(-1, 1)]
+        public void FindAvailableRoom_InvalidInput_ThrowsExceptionError(int stNo, int edNo)
         {
             BookingManager manager = CreateBookingManager();
-            DateTime today = DateTime.Today;
+            DateTime startdate = DateTime.Today.AddDays(stNo);
+            DateTime enddate = DateTime.Today.AddDays(edNo);
             var ex = Assert.Throws<ArgumentException>(()
-                => manager.FindAvailableRoom(today.AddDays(-1), today));
-            StringAssert.Contains("Start and end date cannot be set to before current date, and end date should not be later than start date", ex.Message);
-        }
-
-        [Test]
-        public void FindAvailableRoom_EndDateBeforeToday_ThrowsExceptionError()
-        {
-            BookingManager manager = CreateBookingManager();
-            DateTime today = DateTime.Today;
-            var ex = Assert.Throws<ArgumentException>(()
-                => manager.FindAvailableRoom(today, today.AddDays(-1)));
-            StringAssert.Contains("Start and end date cannot be set to before current date, and end date should not be later than start date", ex.Message);
+                => manager.FindAvailableRoom(startdate, enddate));
+            StringAssert.Contains("Start and end date cannot be set to before current date, and the start date later than the end date", ex.Message);
         }
         //------------GetFullyOccupiedDates------------
         [Test]
@@ -235,12 +280,12 @@ namespace HotelBooking.UnitTests
             var result = manager.MaxBookingDate();
             Assert.AreEqual(lastBookingDate, result);
         }
-
-        /*
+        //---------------------------------------------------------------------------
         private BookingManager CreateBookingManager()
         {
             DateTime start = DateTime.Today.AddDays(10);
             DateTime end = DateTime.Today.AddDays(20);
+<<<<<<< HEAD
             RepositoriesFactory.BookingRepository = new FakeBookingRepository(start, end);
             RepositoriesFactory.RoomRepository = Substitute.For<IRepository<Room>>();
             return new BookingManager();
@@ -250,6 +295,8 @@ namespace HotelBooking.UnitTests
         {
             DateTime start = DateTime.Today.AddDays(10);
             DateTime end = DateTime.Today.AddDays(20);
+=======
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
             DateTime LastYearStart = new DateTime(2016, 02, 02);
             DateTime LastYearEnd = new DateTime(2016, 02, 22);
 

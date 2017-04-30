@@ -74,7 +74,12 @@
   <ItemGroup>
     <Compile Include="BookingManagerTests.cs" />
     <Compile Include="BookingViewModelTests.cs" />
+<<<<<<< HEAD
     <Compile Include="PathTesting\PathTestingBookingManagerClass.cs" />
+=======
+    <Compile Include="DiscardedTests.cs" />
+    <Compile Include="MiniProject5Tests.cs" />
+>>>>>>> 42870b7a2cc0b4a51b0aa79ba73ca1782c102cd3
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeleniumTest\CreateBookingSeleniumTests.cs" />
   </ItemGroup>
